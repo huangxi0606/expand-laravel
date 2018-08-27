@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,6 +14,18 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+Route::group([
+    'prefix'=>'/v1',
+    'middleware' => ['api'],
+    'namespace' => 'Api'
+], function () {
+
+    Route::any("interventionImage" , "PicController@interventionImage");
+//    Route::get('getPic', function(){
+//        $img = Image::make('111.jpg')->resize(200, 200);
+//        return $img->response('jpg');
+//    });
 });
